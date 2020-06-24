@@ -15,6 +15,7 @@ public:
     float y;
     float up;
     float down;
+   
 private:
-
+    
 };
