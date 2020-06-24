@@ -23,6 +23,7 @@
 #include <wrl.h>
 #include "ChiliException.h"
 #include "Colors.h"
+#include "rectf.h"
 
 class Graphics
 {
@@ -47,7 +48,7 @@ private:
 	};
 public:
 	Graphics( class HWNDKey& key );
-	Graphics( const Graphics& ) = delete;
+	Graphics( const Graphics& );
 	Graphics& operator=( const Graphics& ) = delete;
 	void EndFrame();
 	void BeginFrame();
@@ -56,7 +57,18 @@ public:
 		PutPixel( x,y,{ unsigned char( r ),unsigned char( g ),unsigned char( b ) } );
 	}
 	void PutPixel( int x,int y,Color c );
+	void DrawRect( int x0,int y0,int x1,int y1,Color c );
+	void DrawRect( const rectf& rect,Color c )
+	{
+		DrawRect( int( rect.x ),int( rect.y ),int( rect.up ),int( rect.down ),c );
+	}
+	void DrawCircle( int x,int y,int radius,Color c );
+	void DrawIsoRightTriUL( int x,int y,int size,Color c );
+	void DrawIsoRightTriUR( int x,int y,int size,Color c );
+	void DrawIsoRightTriBL( int x,int y,int size,Color c );
+	void DrawIsoRightTriBR( int x,int y,int size,Color c );
 	~Graphics();
+	static rectf GetScreenRect();
 private:
 	Microsoft::WRL::ComPtr<IDXGISwapChain>				pSwapChain;
 	Microsoft::WRL::ComPtr<ID3D11Device>				pDevice;
