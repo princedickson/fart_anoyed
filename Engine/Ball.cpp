@@ -8,7 +8,12 @@ Ball::Ball(const Vec2 pos_in, Vec2& vel_in)
 {
 }
 
-void Ball::Draw(Graphics gfx, Color c) const
+void Ball::Draw(Graphics& gfx) const
 {
 	SpriteCodex::DrawBall(pos,gfx);
+}
+
+void Ball::Update(float dt) 
+{
+	pos += vel * dt;
 }

@@ -48,7 +48,7 @@ private:
 	};
 public:
 	Graphics( class HWNDKey& key );
-	Graphics( const Graphics& );
+	Graphics( const Graphics& ) = delete;
 	Graphics& operator=( const Graphics& ) = delete;
 	void EndFrame();
 	void BeginFrame();
